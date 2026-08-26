@@ -1054,3 +1054,44 @@ h1, h2, h3, .display, .almanac-section-title, .almanac-hero h1 { font-family: "D
   .itinerary-close .section-shell { padding-top: 85px; padding-bottom: 85px; }
   .itinerary-close h2 { font-size: clamp(3.9rem, 19vw, 5.9rem); }
 }
+
+/* Coastal motion pass: the WebGL tide field is atmospheric support, while the monsoon composition adds a distinct material chapter. */
+.coastal-atmosphere { position: absolute; z-index: 1; inset: 0; overflow: hidden; pointer-events: none; mix-blend-mode: screen; opacity: .72; }
+.coastal-atmosphere canvas { display: block; width: 100%; height: 100%; }
+.almanac-hero-content, .almanac-hero-aside { z-index: 2; }
+.almanac-monsoon-section { position: relative; overflow: hidden; background: #dce8e1; }
+.almanac-monsoon-section::before { content: ""; position: absolute; width: 50vw; height: 50vw; top: -33vw; right: -14vw; border: 1px solid rgba(33,74,67,.1); border-radius: 50%; box-shadow: 0 0 0 65px rgba(33,74,67,.045), 0 0 0 130px rgba(33,74,67,.025); }
+.almanac-monsoon-grid { position: relative; display: grid; grid-template-columns: 1.12fr .88fr; grid-template-rows: auto auto; gap: 66px 7vw; align-items: center; padding-top: 144px; padding-bottom: 144px; }
+.almanac-monsoon-photo { min-height: 620px; grid-row: span 2; position: relative; overflow: hidden; background: #264f49; }
+.almanac-monsoon-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,28,25,.63), transparent 45%); }
+.almanac-monsoon-photo img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; transition: transform .8s var(--ease-out); }
+.almanac-monsoon-photo:hover img { transform: scale(1.04); }
+.almanac-monsoon-photo span { position: absolute; z-index: 1; left: 24px; bottom: 23px; color: rgba(255,255,255,.86); font-size: 9px; letter-spacing: .15em; text-transform: uppercase; font-weight: 800; }
+.almanac-monsoon-copy { align-self: end; }
+.almanac-monsoon-copy h2 { margin: 20px 0 0; color: var(--almanac-ink); font-family: "DM Serif Display", Georgia, serif; font-size: clamp(3.5rem, 5.2vw, 5.9rem); line-height: .83; font-weight: 400; letter-spacing: -.055em; }
+.almanac-monsoon-copy h2 em { color: #c2634a; font-style: italic; }
+.almanac-monsoon-copy p { max-width: 420px; margin: 26px 0 26px; color: #50665e; font-size: 14px; line-height: 1.75; }
+.almanac-monsoon-copy .almanac-button.primary { color: #fff; background: var(--almanac-ink); }
+.almanac-monsoon-notes { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.almanac-monsoon-notes span { padding: 7px 9px; color: #4b7066; border: 1px solid rgba(57,100,91,.25); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; font-weight: 800; }
+.almanac-harbour-fragment { min-height: 270px; position: relative; align-self: start; margin: 0; overflow: hidden; background: #1e403a; }
+.almanac-harbour-fragment img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; transition: transform .7s var(--ease-out); }
+.almanac-harbour-fragment:hover img { transform: scale(1.07); }
+.almanac-harbour-fragment::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,28,25,.63), transparent 50%); }
+.almanac-harbour-fragment figcaption { position: absolute; z-index: 1; left: 18px; bottom: 17px; color: #fff; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; }
+
+@media (max-width: 900px) {
+  .coastal-atmosphere { opacity: .48; }
+  .almanac-monsoon-grid { grid-template-columns: 1fr; grid-template-rows: auto; gap: 42px; padding-top: 94px; padding-bottom: 94px; }
+  .almanac-monsoon-photo { min-height: 530px; grid-row: auto; }
+  .almanac-monsoon-copy { align-self: auto; }
+  .almanac-harbour-fragment { min-height: 350px; max-width: 460px; }
+}
+
+@media (max-width: 560px) {
+  .coastal-atmosphere { display: none; }
+  .almanac-monsoon-grid { gap: 34px; padding-top: 80px; padding-bottom: 80px; }
+  .almanac-monsoon-photo { min-height: 420px; }
+  .almanac-monsoon-copy h2 { font-size: clamp(3.4rem, 16vw, 4.9rem); }
+  .almanac-harbour-fragment { min-height: 280px; }
+}

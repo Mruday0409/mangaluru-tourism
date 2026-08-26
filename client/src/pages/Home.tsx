@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion"
 import { ArrowDownRight, ArrowRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { Link } from "wouter";
 import { IMG } from "@/data/siteData";
+import CoastalAtmosphere from "@/components/CoastalAtmosphere";
 
 const chapters = [
   { title: "First light", copy: "The market is awake, the dosa is still warm, and the city has not decided what kind of day it will be.", image: IMG.market, tag: "06:30 — Central Market" },
@@ -12,7 +13,7 @@ const chapters = [
 ];
 
 const tastes = [
-  { name: "Neer dosa", note: "Soft, lacy, endlessly capable", image: IMG.food, colour: "#e8b963" },
+  { name: "Neer dosa", note: "Soft, lacy, endlessly capable", image: IMG.breakfastDetail, colour: "#e8b963" },
   { name: "Ghee roast", note: "Deep spice with a long finish", image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1600&q=85", colour: "#d26a45" },
   { name: "Catch of the day", note: "The sea decides the menu", image: "https://images.unsplash.com/photo-1510130387422-82bed34b37e9?auto=format&fit=crop&w=1600&q=85", colour: "#3e8078" },
 ];
@@ -42,6 +43,7 @@ export default function Home() {
       <section ref={heroRef} className="almanac-hero">
         <motion.div className="almanac-hero-media" style={{ scale: imageScale, y: imageY }}><img src={IMG.hero} alt="Arabian Sea coast at Mangaluru in warm evening light" /></motion.div>
         <div className="almanac-hero-wash" />
+        <CoastalAtmosphere />
         <div className="almanac-hero-content">
           <motion.p initial="hidden" animate="visible" variants={rise} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} className="almanac-overline">Mangaluru, in its own time</motion.p>
           <motion.h1 initial="hidden" animate="visible" variants={rise} transition={{ duration: 0.8, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}>Meet the coast<br /><em>between the lines.</em></motion.h1>
@@ -52,6 +54,14 @@ export default function Home() {
       </section>
 
       <section className="almanac-intro section-shell"><motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.35 }} variants={rise} transition={{ duration: 0.7 }} className="almanac-intro-grid"><span className="almanac-label">The city’s temperament</span><h2>Soft mornings.<br /><em>Electric evenings.</em></h2><p>Mangaluru shifts without warning: a fish market becomes a flower lane, a tiled temple roof breaks the skyline, and the sea stays only one turn away.</p></motion.div></section>
+
+      <section className="almanac-monsoon-section">
+        <div className="section-shell almanac-monsoon-grid">
+          <motion.div initial={{ opacity: 0, y: 34 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }} className="almanac-monsoon-photo"><img src={IMG.monsoon} alt="Rain-washed coastal road in Mangaluru during the monsoon" /><span>Monsoon note — let the road lead</span></motion.div>
+          <motion.div initial={{ opacity: 0, x: 28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.75, delay: 0.08, ease: [0.16, 1, 0.3, 1] }} className="almanac-monsoon-copy"><span className="almanac-label">The season that changes everything</span><h2>When rain turns<br />the city <em>cinematic.</em></h2><p>In Mangaluru, monsoon is not a reason to stay inside. It is a different way of looking: red earth saturated, green edges louder, coffee warmer, and the sea a little more dramatic.</p><div className="almanac-monsoon-notes"><span>Rain walks</span><span>Laterite roads</span><span>Slow coffee</span></div><Link href="/travel-guide" className="almanac-button primary">Travel with the weather <ArrowRight size={16} /></Link></motion.div>
+          <motion.figure initial={{ opacity: 0, scale: 0.94 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.75, delay: 0.15 }} whileHover={{ y: -9, rotate: -1 }} className="almanac-harbour-fragment"><img src={IMG.harbourDetail} alt="Fishing harbour texture in Mangaluru" /><figcaption>Working coast / not a backdrop</figcaption></motion.figure>
+        </div>
+      </section>
 
       <section className="almanac-chapter-section">
         <div className="section-shell almanac-chapter-grid">

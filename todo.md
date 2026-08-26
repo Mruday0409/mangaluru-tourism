@@ -8,3 +8,11 @@
 - [x] Add high-quality interaction patterns, including motion-driven carousels, hover reveals, animated content transitions, and scroll choreography.
 - [x] Improve the trip planner and destination exploration modules so they feel more tactile and useful.
 - [x] Validate the updated desktop and mobile experience, then save a new checkpoint for delivery.
+
+## Motion and Imagery Enhancement Pass
+
+- [x] Define a focused motion language that adds depth without making the travel experience distracting.
+- [x] Curate additional Mangaluru visual assets for markets, monsoon, architecture, coastline, and food details.
+- [x] Add a restrained interactive WebGL/Three.js visual layer that reinforces the coastal identity.
+- [x] Expand selected page image compositions and add cinematic scroll, hover, and selection transitions.
+- [x] Validate performance, responsive behavior, and visual hierarchy before saving the enhanced checkpoint.
