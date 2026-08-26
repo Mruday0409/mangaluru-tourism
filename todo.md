@@ -16,3 +16,11 @@
 - [x] Add a restrained interactive WebGL/Three.js visual layer that reinforces the coastal identity.
 - [x] Expand selected page image compositions and add cinematic scroll, hover, and selection transitions.
 - [x] Validate performance, responsive behavior, and visual hierarchy before saving the enhanced checkpoint.
+
+## Live Weather and 3D Scroll Story Pass
+
+- [x] Define the live Mangaluru weather states, fallback behavior, and almanac presentation.
+- [x] Add a public real-time weather data integration with a clear refresh state and accessible status text.
+- [x] Recompose the homepage into more visibly progressive, scroll-driven 3D scenes.
+- [x] Add layered parallax, depth transitions, and interactive motion that remain usable on touch and reduced-motion devices.
+- [x] Validate live data, responsive performance, and scroll choreography before saving the update.

@@ -5,6 +5,8 @@ import { ArrowDownRight, ArrowRight, ChevronLeft, ChevronRight, Sparkles } from 
 import { Link } from "wouter";
 import { IMG } from "@/data/siteData";
 import CoastalAtmosphere from "@/components/CoastalAtmosphere";
+import TideScrollScene from "@/components/TideScrollScene";
+import WeatherAlmanac from "@/components/WeatherAlmanac";
 
 const chapters = [
   { title: "First light", copy: "The market is awake, the dosa is still warm, and the city has not decided what kind of day it will be.", image: IMG.market, tag: "06:30 — Central Market" },
@@ -50,8 +52,10 @@ export default function Home() {
           <motion.p initial="hidden" animate="visible" variants={rise} transition={{ duration: 0.8, delay: 0.17, ease: [0.16, 1, 0.3, 1] }} className="almanac-hero-intro">Not a checklist of attractions. A living city of red tiles, coconut steam, temple light, and the long walk toward the sea.</motion.p>
           <motion.div initial="hidden" animate="visible" variants={rise} transition={{ duration: 0.8, delay: 0.26, ease: [0.16, 1, 0.3, 1] }} className="almanac-hero-actions"><Link href="/places" className="almanac-button primary">Explore the city <ArrowDownRight size={17} /></Link><Link href="/plan-your-visit" className="almanac-text-action">Build your weekend <ArrowRight size={16} /></Link></motion.div>
         </div>
-        <motion.div className="almanac-hero-aside" initial={{ opacity: 0, x: 28 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.45 }}><span>Today’s almanac</span><strong>Sea breeze<br />after 4:30</strong><i /></motion.div>
+        <WeatherAlmanac />
       </section>
+
+      <TideScrollScene />
 
       <section className="almanac-intro section-shell"><motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.35 }} variants={rise} transition={{ duration: 0.7 }} className="almanac-intro-grid"><span className="almanac-label">The city’s temperament</span><h2>Soft mornings.<br /><em>Electric evenings.</em></h2><p>Mangaluru shifts without warning: a fish market becomes a flower lane, a tiled temple roof breaks the skyline, and the sea stays only one turn away.</p></motion.div></section>
 

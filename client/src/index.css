@@ -1095,3 +1095,82 @@ h1, h2, h3, .display, .almanac-section-title, .almanac-hero h1 { font-family: "D
   .almanac-monsoon-copy h2 { font-size: clamp(3.4rem, 16vw, 4.9rem); }
   .almanac-harbour-fragment { min-height: 280px; }
 }
+
+/* Live almanac + scroll story: the weather panel is useful travel intelligence and the tide scene makes scrolling visibly transformative. */
+.weather-almanac { min-width: 188px; padding: 15px 15px 13px; border: 1px solid rgba(255,255,255,.25); background: rgba(16,42,37,.53); backdrop-filter: blur(12px); }
+.weather-almanac-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: rgba(255,255,255,.69); font-size: 8px; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; }
+.weather-almanac-top button { display: grid; place-items: center; width: 23px; height: 23px; color: #f4c774; border: 0; border-radius: 50%; background: rgba(255,255,255,.1); transition: background .2s var(--ease-out), transform .2s var(--ease-out); }
+.weather-almanac-top button:hover:not(:disabled) { background: rgba(255,255,255,.2); transform: rotate(60deg); }
+.weather-almanac-top button:disabled { cursor: wait; }
+.weather-almanac .spin { animation: almanac-spin .9s linear infinite; }
+.weather-almanac-main { display: grid; grid-template-columns: 25px auto 1fr; gap: 9px; align-items: center; margin-top: 16px; }
+.weather-almanac-main > svg { color: #f4c774; }
+.weather-almanac-main > strong { font-family: "DM Serif Display", Georgia, serif; font-size: 42px; line-height: .75; font-weight: 400; }
+.weather-almanac-main div { display: grid; gap: 3px; }
+.weather-almanac-main b { font-size: 10px; line-height: 1.1; }
+.weather-almanac-main small { color: rgba(255,255,255,.67); font-size: 8px; letter-spacing: .05em; }
+.weather-almanac-stats { display: flex; gap: 12px; margin-top: 16px; padding-top: 11px; border-top: 1px solid rgba(255,255,255,.18); }
+.weather-almanac-stats span { display: inline-flex; align-items: center; gap: 5px; color: rgba(255,255,255,.74); font-size: 9px; font-weight: 700; }
+.weather-almanac-stats svg { color: #a6cec1; }
+.weather-almanac-foot { display: flex; align-items: center; gap: 6px; margin-top: 13px; color: rgba(255,255,255,.58); font-size: 7px; letter-spacing: .1em; text-transform: uppercase; font-weight: 800; }
+.weather-almanac-foot i { width: 5px; height: 5px; border-radius: 50%; background: #9ed3ba; box-shadow: 0 0 0 3px rgba(158,211,186,.12); }
+.weather-almanac-error { display: grid; gap: 5px; margin-top: 17px; }
+.weather-almanac-error strong { font-family: "DM Serif Display", Georgia, serif; font-size: 20px; line-height: .92; font-weight: 400; }
+.weather-almanac-error p { margin: 0; color: rgba(255,255,255,.67); font-size: 9px; line-height: 1.5; }
+@keyframes almanac-spin { to { transform: rotate(360deg); } }
+
+.tide-scroll-scene { height: 320vh; position: relative; color: #f7f0e6; background: #102c29; }
+.tide-scroll-sticky { height: 100vh; position: sticky; top: 0; overflow: hidden; }
+.tide-scroll-canvas { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.tide-scroll-canvas canvas { display: block; width: 100%; height: 100%; }
+.tide-scroll-vignette { position: absolute; z-index: 2; inset: 0; pointer-events: none; background: radial-gradient(circle at 50% 44%, transparent 6%, rgba(7,25,23,.12) 38%, rgba(7,25,23,.77) 100%), linear-gradient(90deg, rgba(6,24,21,.64), transparent 38%, rgba(6,24,21,.42)); }
+.tide-scroll-copy { position: absolute; z-index: 3; max-width: 500px; }
+.tide-scroll-copy span { color: #e4bb70; font-size: 9px; letter-spacing: .15em; text-transform: uppercase; font-weight: 800; }
+.tide-scroll-copy h2 { margin: 20px 0 0; font-family: "DM Serif Display", Georgia, serif; font-size: clamp(4.1rem, 7vw, 7.5rem); font-weight: 400; line-height: .79; letter-spacing: -.06em; }
+.tide-scroll-copy h2 em { color: #e85b3f; font-style: italic; }
+.tide-scroll-copy p { max-width: 365px; margin: 24px 0 0; color: rgba(255,255,255,.74); font-size: 14px; line-height: 1.72; }
+.tide-scroll-copy-one { left: 10vw; top: 27%; }
+.tide-scroll-copy-two { right: 10vw; top: 27%; text-align: right; }
+.tide-scroll-copy-two p { margin-left: auto; }
+.tide-scroll-copy-three { left: 10vw; top: 27%; }
+.tide-scroll-meter { width: 70px; height: 3px; position: absolute; z-index: 4; left: 10vw; bottom: 52px; transform-origin: left center; background: #e4bb70; }
+.tide-scroll-index { position: absolute; z-index: 4; top: 34px; left: 10vw; display: grid; gap: 5px; color: rgba(255,255,255,.63); font-size: 8px; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; }
+.tide-scroll-index b { color: #e85b3f; font-size: 8px; }
+.tide-scroll-data { position: absolute; z-index: 4; right: 10vw; bottom: 47px; display: flex; gap: 17px; color: rgba(255,255,255,.65); font-size: 8px; letter-spacing: .11em; text-transform: uppercase; font-weight: 800; }
+.tide-scroll-data span { display: inline-flex; align-items: center; gap: 6px; }
+.tide-scroll-data i { width: 6px; height: 6px; border-radius: 50%; background: #e85b3f; box-shadow: 0 0 0 4px rgba(232,91,63,.12); }
+
+@media (max-width: 900px) {
+  .weather-almanac { right: 24px; bottom: 25px; }
+  .tide-scroll-scene { height: 260vh; }
+  .tide-scroll-copy { max-width: 420px; }
+  .tide-scroll-copy-one, .tide-scroll-copy-three { left: 7vw; }
+  .tide-scroll-copy-two { right: 7vw; }
+  .tide-scroll-meter { left: 7vw; }
+  .tide-scroll-index { left: 7vw; }
+  .tide-scroll-data { right: 7vw; }
+}
+
+@media (max-width: 560px) {
+  .weather-almanac { min-width: 0; right: 20px; left: 20px; bottom: 17px; }
+  .weather-almanac-main > strong { font-size: 36px; }
+  .tide-scroll-scene { height: 210vh; }
+  .tide-scroll-copy { right: 22px; left: 22px; max-width: none; text-align: left; }
+  .tide-scroll-copy-one, .tide-scroll-copy-two, .tide-scroll-copy-three { top: 24%; }
+  .tide-scroll-copy-two p { margin-left: 0; }
+  .tide-scroll-copy h2 { font-size: clamp(3.6rem, 17vw, 5.4rem); }
+  .tide-scroll-copy p { font-size: 13px; }
+  .tide-scroll-meter { left: 22px; bottom: 31px; }
+  .tide-scroll-index { top: 25px; left: 22px; }
+  .tide-scroll-data { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tide-scroll-scene { height: auto; }
+  .tide-scroll-sticky { height: auto; min-height: 720px; position: relative; padding: 95px 24px; }
+  .tide-scroll-canvas { display: none; }
+  .tide-scroll-copy { position: relative; inset: auto; max-width: 560px; margin-bottom: 42px; opacity: 1 !important; transform: none !important; }
+  .tide-scroll-copy-two { text-align: left; }
+  .tide-scroll-copy-two p { margin-left: 0; }
+  .tide-scroll-meter { display: none; }
+}
