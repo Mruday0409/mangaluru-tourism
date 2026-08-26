@@ -1,6 +1,31 @@
-/* Coastal Modernist Food page: a dish-led chapter that treats appetite as the quickest route into the city. */
-import StoryPage, { storyConfigs } from "@/components/StoryPage";
+/* Coastal Almanac Food page: an abundant dish-led journal that replaces the previous sparse template with editorial composition and active choices. */
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Coffee, Flame, Moon, SunMedium } from "lucide-react";
+import { Link } from "wouter";
+import { IMG } from "@/data/siteData";
+
+const dishes = [
+  { name: "Neer dosa", cue: "Morning / coconut-soft", copy: "Thin enough to catch the light, soft enough to carry whatever the coast puts beside it.", image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1600&q=85", icon: SunMedium },
+  { name: "Kori ghee roast", cue: "Lunch / spice-forward", copy: "A Mangaluru classic with depth, heat, and the slow confidence of a dish that does not need an introduction.", image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1600&q=85", icon: Flame },
+  { name: "Fish curry rice", cue: "Afternoon / sea-led", copy: "The market chooses the fish. The kitchen does the rest with tamarind, coconut, and a sense of place.", image: "https://images.unsplash.com/photo-1510130387422-82bed34b37e9?auto=format&fit=crop&w=1600&q=85", icon: Coffee },
+  { name: "Filter coffee", cue: "Any hour / take your time", copy: "A small pause beneath a fan, before the next street, beach, or conversation asks for your attention.", image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=85", icon: Moon },
+];
 
 export default function Food() {
-  return <StoryPage config={storyConfigs.food} />;
+  const [dishIndex, setDishIndex] = useState(0);
+  const dish = dishes[dishIndex];
+  const Icon = dish.icon;
+
+  return <>
+    <section className="food-hero"><div className="food-hero-still"><img src={IMG.food} alt="Coastal Karnataka food on a table" /></div><div className="food-hero-copy"><motion.span initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .55 }} className="almanac-overline">Food & drink, properly considered</motion.span><motion.h1 initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .07, ease: [0.16, 1, 0.3, 1] }}>Start with<br /><em>appetite.</em></motion.h1><motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .16, ease: [0.16, 1, 0.3, 1] }}>Mangaluru’s food is a map of the coast: coconut, pepper, ghee, rice, fish, and a table that often answers before you have finished the question.</motion.p><motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .25 }}><Link href="#dish-journal" className="almanac-button primary">Find your first plate <ArrowRight size={16} /></Link></motion.div></div><div className="food-hero-note"><span>Tip for today</span><strong>Order breakfast<br />before 10.</strong></div></section>
+
+    <section id="dish-journal" className="section-shell food-journal"><div className="food-journal-title"><span className="almanac-label">The edible almanac</span><h2>Four doorways<br />into <em>flavour.</em></h2><p>Choose a dish and see where the day might take you next.</p></div><div className="food-journal-grid"><div className="food-dish-list">{dishes.map((item, index) => <button key={item.name} className={index === dishIndex ? "active" : ""} onClick={() => setDishIndex(index)}><span>0{index + 1}</span><strong>{item.name}</strong><small>{item.cue}</small></button>)}</div><div className="food-dish-stage"><AnimatePresence mode="wait"><motion.img key={dish.image} src={dish.image} alt={dish.name} initial={{ opacity: 0, scale: 1.08 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.03 }} transition={{ duration: .52, ease: [0.16, 1, 0.3, 1] }} /></AnimatePresence><motion.div key={dish.name} initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .35, delay: .12 }}><Icon size={20} /><span>{dish.cue}</span><h3>{dish.name}</h3><p>{dish.copy}</p></motion.div></div></div></section>
+
+    <section className="food-schedule"><div className="section-shell"><div className="food-schedule-head"><span className="almanac-label">A very good food day</span><h2>Eat with the<br /><em>city’s rhythm.</em></h2></div><div className="food-schedule-grid"><article><span>08:00</span><h3>Breakfast first</h3><p>Neer dosa, idli, buns, coffee — the day begins best before the city gets busy.</p></article><article><span>13:00</span><h3>Follow the market</h3><p>Let what is fresh guide lunch. This is when the coast gets loudest on a plate.</p></article><article><span>16:30</span><h3>Take a quiet cup</h3><p>A cooling drink, coffee, or something fried while the afternoon softens toward evening.</p></article><article><span>20:00</span><h3>Make dinner linger</h3><p>Choose one table and give it time. The best meals here are rarely hurried.</p></article></div></div></section>
+
+    <section className="section-shell food-collage"><motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .65 }} className="food-collage-copy"><span className="almanac-label">Beyond the plate</span><h2>A good meal is also<br />a way <em>in.</em></h2><p>Ask about the catch. Notice the coconut. Follow the smell of toasted spice from the kitchen. In Mangaluru, appetite is a form of orientation.</p><Link href="/plan-your-visit" className="almanac-text-action">Build a food-led day <ArrowRight size={16} /></Link></motion.div><motion.div initial={{ opacity: 0, scale: .95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .75 }} className="food-collage-media"><img className="one" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=85" alt="Colourful Indian meal" /><img className="two" src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=85" alt="A coastal meal" /><span>Cooked close to the coast</span></motion.div></section>
+
+    <section className="food-close"><div className="section-shell"><span className="almanac-label">One last recommendation</span><h2>Travel hungry.<br /><em>Stay curious.</em></h2><p>The city will make sure you do not leave with an empty notebook — or an empty plate.</p><Link href="/places" className="almanac-button light">Find food-adjacent places <ArrowRight size={16} /></Link></div></section>
+  </>;
 }

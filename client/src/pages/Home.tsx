@@ -1,72 +1,79 @@
-/* Coastal Modernist homepage: a cinematic arrival that turns into an asymmetric field guide of routes, appetite, and weather. */
-import { useState } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight, Compass, MapPin } from "lucide-react";
+/* Coastal Almanac homepage: a non-template travel editorial with serif atmosphere, responsive image choreography, and tactile content choices. */
+import { useMemo, useRef, useState } from "react";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { ArrowDownRight, ArrowRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { Link } from "wouter";
-import ScrollReveal from "@/components/ScrollReveal";
-import PlaceCard from "@/components/PlaceCard";
-import { IMG, featuredPlaces } from "@/data/siteData";
+import { IMG } from "@/data/siteData";
 
-const moods = [
-  { label: "The coast, unhurried", title: "Let the tide set the itinerary.", copy: "At Sasihithlu, river water and sea water make a softer edge — the kind of place that rewards staying past the obvious photograph.", image: IMG.beach, note: "North of Kudla · 30 min" },
-  { label: "A table for the day", title: "Breakfast is a way in.", copy: "Neer dosa, coconut, a little fire. Start with what the city makes every morning and everything else falls into place.", image: IMG.food, note: "Everywhere · best before noon" },
-  { label: "In the old quarter", title: "Look up. The city is layered.", copy: "Painted ceilings, red roofs, and the cool hush of old corridors — a different kind of shoreline, made from memory.", image: IMG.heritage, note: "Hampankatta · city centre" },
+const chapters = [
+  { title: "First light", copy: "The market is awake, the dosa is still warm, and the city has not decided what kind of day it will be.", image: IMG.market, tag: "06:30 — Central Market" },
+  { title: "Salt air", copy: "Walk until the road stops trying to be a city street. The Arabian Sea takes over from there.", image: IMG.panambur, tag: "17:35 — Panambur" },
+  { title: "Blue hour", copy: "The final light turns tiled roofs, temple lamps, and ferry wakes into a quieter kind of theatre.", image: IMG.port, tag: "19:10 — Old port" },
 ];
 
+const tastes = [
+  { name: "Neer dosa", note: "Soft, lacy, endlessly capable", image: IMG.food, colour: "#e8b963" },
+  { name: "Ghee roast", note: "Deep spice with a long finish", image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1600&q=85", colour: "#d26a45" },
+  { name: "Catch of the day", note: "The sea decides the menu", image: "https://images.unsplash.com/photo-1510130387422-82bed34b37e9?auto=format&fit=crop&w=1600&q=85", colour: "#3e8078" },
+];
+
+const visitModes = [
+  { label: "A slow Saturday", title: "Breakfast, backwater, sunset.", copy: "For long lunches and an ocean-facing last stop.", href: "/itineraries" },
+  { label: "A culture-rich day", title: "Painted walls, tiled roofs, a temple bell.", copy: "For slow looking and a few meaningful steps indoors.", href: "/culture" },
+  { label: "Food first", title: "Let appetite choose the map.", copy: "For the traveller whose best memories arrive on a plate.", href: "/food" },
+];
+
+const rise = { hidden: { opacity: 0, y: 32 }, visible: { opacity: 1, y: 0 } };
+
 export default function Home() {
-  const [moodIndex, setMoodIndex] = useState(0);
-  const mood = moods[moodIndex];
-  const moveMood = (direction: number) => setMoodIndex((current) => (current + direction + moods.length) % moods.length);
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, 96]);
+  const [chapterIndex, setChapterIndex] = useState(0);
+  const [tasteIndex, setTasteIndex] = useState(0);
+  const [modeIndex, setModeIndex] = useState(0);
+  const chapter = chapters[chapterIndex];
+  const taste = tastes[tasteIndex];
+  const mode = useMemo(() => visitModes[modeIndex], [modeIndex]);
 
   return (
     <>
-      <section className="hero">
-        <div className="hero-media"><img className="hero-image" src={IMG.hero} alt="Golden hour coastline at Mangaluru" /></div>
-        <div className="hero-content">
-          <div className="hero-kicker"><span /> A field guide to Mangaluru</div>
-          <h1 className="hero-title">Arrive<br /><em>slowly.</em></h1>
-          <p className="hero-copy">A coast of red earth, salt air, old streets, and breakfasts that ask you to stay a little longer.</p>
-          <div className="button-row hero-actions"><Link href="/places" className="button button-primary">Start exploring <ArrowRight size={14} /></Link><Link href="/itineraries" className="button button-light">Find your route</Link></div>
-          <div className="hero-bottomline">
-            <div className="hero-note"><i className="dot" /><span>Today’s cue: <strong>follow the light west</strong></span></div>
-            <div className="hero-stamp"><span className="stamp-top">Kudla / 12°52'N</span><span className="stamp-main">Arabian Sea edge</span></div>
-          </div>
+      <section ref={heroRef} className="almanac-hero">
+        <motion.div className="almanac-hero-media" style={{ scale: imageScale, y: imageY }}><img src={IMG.hero} alt="Arabian Sea coast at Mangaluru in warm evening light" /></motion.div>
+        <div className="almanac-hero-wash" />
+        <div className="almanac-hero-content">
+          <motion.p initial="hidden" animate="visible" variants={rise} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} className="almanac-overline">Mangaluru, in its own time</motion.p>
+          <motion.h1 initial="hidden" animate="visible" variants={rise} transition={{ duration: 0.8, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}>Meet the coast<br /><em>between the lines.</em></motion.h1>
+          <motion.p initial="hidden" animate="visible" variants={rise} transition={{ duration: 0.8, delay: 0.17, ease: [0.16, 1, 0.3, 1] }} className="almanac-hero-intro">Not a checklist of attractions. A living city of red tiles, coconut steam, temple light, and the long walk toward the sea.</motion.p>
+          <motion.div initial="hidden" animate="visible" variants={rise} transition={{ duration: 0.8, delay: 0.26, ease: [0.16, 1, 0.3, 1] }} className="almanac-hero-actions"><Link href="/places" className="almanac-button primary">Explore the city <ArrowDownRight size={17} /></Link><Link href="/plan-your-visit" className="almanac-text-action">Build your weekend <ArrowRight size={16} /></Link></motion.div>
         </div>
-        <div className="scroll-cue"><span>Scroll to wander</span><i /></div>
+        <motion.div className="almanac-hero-aside" initial={{ opacity: 0, x: 28 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.45 }}><span>Today’s almanac</span><strong>Sea breeze<br />after 4:30</strong><i /></motion.div>
       </section>
 
-      <section className="intro-band">
-        <div className="section-shell">
-          <div className="intro-grid">
-            <ScrollReveal><span className="intro-number">01 / THE FEEL</span></ScrollReveal>
-            <ScrollReveal delay={90}><h2 className="intro-headline">A port city with <span className="tide-underline">room to breathe.</span></h2></ScrollReveal>
-            <ScrollReveal delay={180}><p className="intro-side">Mangaluru is not a checklist. It is a change of pace: the first fish market call, a road lined with palms, the exact hour the beach turns copper.</p></ScrollReveal>
-          </div>
-          <div className="route-strip"><span className="route-strip-label">Your route begins</span><div className="route-line" /><span className="route-strip-end">West / 00:01</span></div>
+      <section className="almanac-intro section-shell"><motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.35 }} variants={rise} transition={{ duration: 0.7 }} className="almanac-intro-grid"><span className="almanac-label">The city’s temperament</span><h2>Soft mornings.<br /><em>Electric evenings.</em></h2><p>Mangaluru shifts without warning: a fish market becomes a flower lane, a tiled temple roof breaks the skyline, and the sea stays only one turn away.</p></motion.div></section>
+
+      <section className="almanac-chapter-section">
+        <div className="section-shell almanac-chapter-grid">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.35 }} variants={rise} transition={{ duration: 0.7 }}><span className="almanac-label">Three ways the city moves</span><h2 className="almanac-section-title">Follow a different<br /><em>hour of the day.</em></h2><div className="almanac-chapter-tabs">{chapters.map((item, index) => <button key={item.title} onClick={() => setChapterIndex(index)} className={index === chapterIndex ? "active" : ""}><span>0{index + 1}</span>{item.title}</button>)}</div></motion.div>
+          <motion.div layout className="almanac-chapter-card"><AnimatePresence mode="wait"><motion.img key={chapter.image} src={chapter.image} alt={chapter.title} initial={{ opacity: 0, scale: 1.06 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.04 }} transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }} /></AnimatePresence><div><span>{chapter.tag}</span><h3>{chapter.title}</h3><p>{chapter.copy}</p><Link href="/experiences" className="almanac-text-action">Follow this mood <ArrowRight size={15} /></Link></div></motion.div>
         </div>
       </section>
 
-      <section className="section-shell">
-        <ScrollReveal><div className="section-topline"><div><span className="eyebrow">02 / Start here</span><h2 className="section-heading">Three good reasons to <em>go west.</em></h2></div><Link className="text-link" href="/places">See every place <ArrowRight size={15} /></Link></div></ScrollReveal>
-        <div className="editorial-grid">{featuredPlaces.map((place, index) => <ScrollReveal key={place.slug} delay={index * 100} className={`place-slot-${index + 1}`}><PlaceCard place={place} index={index} /></ScrollReveal>)}</div>
-      </section>
-
-      <section className="dark-band">
-        <div className="section-shell dark">
-          <ScrollReveal><span className="eyebrow">03 / Choose a mood</span><h2 className="section-heading">The city changes with the <em>hour.</em></h2></ScrollReveal>
-          <ScrollReveal delay={90}><div className="carousel-shell">
-            <div className="carousel-viewport"><div className="carousel-track" style={{ transform: `translateX(calc(-${moodIndex * 54}vw - ${moodIndex * 17}px))` }}>
-              {moods.map((item) => <article className="carousel-slide" key={item.title}><img src={item.image} alt={item.title} /><div className="carousel-slide-copy"><span className="eyebrow">{item.label}</span><h3>{item.title}</h3><p>{item.copy}</p><small style={{ marginTop: 17, color: "rgba(255,255,255,.58)", fontSize: 10, letterSpacing: ".12em", textTransform: "uppercase", fontWeight: 700 }}>{item.note}</small></div></article>)}
-            </div></div>
-            <div className="carousel-controls"><button className="carousel-arrow" aria-label="Previous mood" onClick={() => moveMood(-1)}><ChevronLeft size={17} /></button><button className="carousel-arrow" aria-label="Next mood" onClick={() => moveMood(1)}><ChevronRight size={17} /></button><span className="carousel-count">0{moodIndex + 1} / 0{moods.length}</span></div>
-          </div></ScrollReveal>
+      <section className="section-shell almanac-mosaic-section">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.28 }} variants={rise} transition={{ duration: 0.7 }} className="almanac-section-head"><div><span className="almanac-label">Not just the expected</span><h2 className="almanac-section-title">Make the city<br /><em>your own.</em></h2></div><Link href="/places" className="almanac-text-action">All places <ArrowRight size={16} /></Link></motion.div>
+        <div className="almanac-mosaic">
+          <motion.article whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 260, damping: 22 }} className="mosaic-card tall"><img src={IMG.kudroli} alt="Kudroli temple in Mangaluru" /><div><span>Heritage</span><h3>Keep looking up.</h3><p>Gold, stone, and an old city that refuses to flatten into a single story.</p><Link href="/culture">Explore culture <ArrowRight size={15} /></Link></div></motion.article>
+          <motion.article whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 260, damping: 22 }} className="mosaic-card"><img src={IMG.panambur} alt="A beach in Mangaluru" /><div><span>Coast</span><h3>Let the horizon interrupt.</h3><Link href="/beaches">Find the shore <ArrowRight size={15} /></Link></div></motion.article>
+          <motion.article whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 260, damping: 22 }} className="mosaic-card ink"><img src={IMG.church} alt="Historic church in Mangaluru" /><div><span>Old quarter</span><h3>Take the long way back.</h3><Link href="/places">Wander slowly <ArrowRight size={15} /></Link></div></motion.article>
         </div>
-        <div className="marquee-wrap"><div className="marquee"><span>Sea air <i /> Red earth <i /> Soft mornings <i /> Good detours <i /></span><span>Sea air <i /> Red earth <i /> Soft mornings <i /> Good detours <i /></span></div></div>
       </section>
 
-      <section className="section-shell">
-        <ScrollReveal><div className="section-topline"><div><span className="eyebrow">04 / Make it yours</span><h2 className="section-heading">Not sure where to start?</h2><p className="section-intro">Tell us the shape of your day. We’ll point you toward a beach, a plate, a quiet street, or all three.</p></div><Link href="/plan-your-visit" className="button button-primary">Build a day <Compass size={15} /></Link></div></ScrollReveal>
-        <ScrollReveal delay={120}><div className="cta-panel" style={{ marginTop: 50 }}><div><span className="eyebrow">Field note / 05</span><h2>Leave space for the unexpected.</h2></div><div><p>Some of Mangaluru’s best moments are not attractions. They’re the turn you didn’t plan, the table that still had one seat, the road home at blue hour.</p><div className="button-row"><Link href="/travel-guide" className="button button-light">Read the travel guide <ArrowRight size={14} /></Link></div></div></div></ScrollReveal>
-      </section>
+      <section className="almanac-taste-section"><div className="section-shell"><motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.35 }} variants={rise} transition={{ duration: 0.7 }} className="almanac-taste-head"><span className="almanac-label">The edible city</span><p>Good travel starts with curiosity. In Mangaluru, it starts before breakfast is even over.</p></motion.div><div className="almanac-taste-layout"><div className="almanac-taste-list">{tastes.map((item, index) => <button key={item.name} onMouseEnter={() => setTasteIndex(index)} onFocus={() => setTasteIndex(index)} onClick={() => setTasteIndex(index)} className={index === tasteIndex ? "active" : ""}><span>0{index + 1}</span><strong>{item.name}</strong><i style={{ background: item.colour }} /></button>)}</div><motion.div layout className="almanac-taste-visual"><AnimatePresence mode="wait"><motion.img key={taste.image} src={taste.image} alt={taste.name} initial={{ clipPath: "inset(0 100% 0 0)" }} animate={{ clipPath: "inset(0 0% 0 0)" }} exit={{ clipPath: "inset(0 0 0 100%)" }} transition={{ duration: 0.65, ease: [0.77, 0, 0.175, 1] }} /></AnimatePresence><div><span>On the plate</span><h2>{taste.name}</h2><p>{taste.note}</p><Link href="/food" className="almanac-button light">Eat your way in <ArrowRight size={16} /></Link></div></motion.div></div></div></section>
+
+      <section className="section-shell almanac-mode-section"><motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.35 }} variants={rise} transition={{ duration: 0.7 }} className="almanac-mode-card"><div className="almanac-mode-copy"><span className="almanac-label">Plan without overplanning</span><h2>What kind of<br /><em>Mangaluru</em> do you want?</h2><p>Choose your mood. We’ll start you with a loose, well-shaped day — not a packed itinerary.</p><div className="almanac-mode-pills">{visitModes.map((item, index) => <button key={item.label} className={modeIndex === index ? "active" : ""} onClick={() => setModeIndex(index)}>{item.label}</button>)}</div></div><AnimatePresence mode="wait"><motion.div key={mode.title} className="almanac-mode-result" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -18 }} transition={{ duration: 0.35 }}><Sparkles size={19} /><span>Our first suggestion</span><h3>{mode.title}</h3><p>{mode.copy}</p><Link href={mode.href} className="almanac-text-action">Open this plan <ArrowRight size={15} /></Link></motion.div></AnimatePresence></motion.div></section>
+
+      <section className="almanac-close"><div className="section-shell"><motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.4 }} variants={rise} transition={{ duration: 0.7 }}><span className="almanac-label">Ready when you are</span><h2>Leave room for<br /><em>one good surprise.</em></h2><p>Save the exact plan for later. The better version of this city will meet you in between the things you meant to do.</p><Link href="/plan-your-visit" className="almanac-button primary">Shape your visit <ArrowDownRight size={17} /></Link></motion.div></div></section>
     </>
   );
 }

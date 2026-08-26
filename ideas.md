@@ -96,3 +96,9 @@ The logo is a bold, text-free symbol: a simplified red-orange route pin that fol
 - Every page includes a recognizable route spine — chapter number, compact location/time metadata, a rule line, and a vermillion route dot — so the field-guide structure is visible beyond section eyebrows.
 - Kudla Vermillion `#E85B3F` is a signal color for primary actions, active states, route dots, key numerals, and at most one major chapter panel per page; large calm fields should usually be sand, ink, or sea-glass.
 - Planning controls should read as field-note objects: practical, tactile, and part of the same curated travel object as the editorial pages.
+
+## Redesign Direction — Coastal Almanac
+
+The redesign removes the left rail, coordinate labels, chapter numerals, literal route lines, and repeated vermillion dots. The new experience is a **Coastal Almanac**: an image-led magazine of Mangaluru built from broad photographic crop windows, warm paper surfaces, tidal teal, and a small number of tactile card interactions. The hierarchy pairs **Inter** for navigation, metadata, and dense reading with **DM Serif Display** for expressive editorial statements. Headers and page heroes must feel materially different, not like the same template with a new title.
+
+Every page should open with a specific sensory proposition, then unfold through at least four varied modules: a visual story, a useful planning or comparison element, a discoverable interactive moment, and a related-next-step module. Motion uses spring-based Framer Motion transitions, horizontal drag or click-led image galleries, masked image reveals, and gentle scroll-linked depth. It should make media and content feel responsive, never merely animate text into view.

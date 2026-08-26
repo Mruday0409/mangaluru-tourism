@@ -1,0 +1,10 @@
+# Mangaluru Tourism Redesign Checklist
+
+- [x] Remove the left-side route rail, coordinates, chapter numbers, and literal route-spine labels across the site.
+- [x] Replace the current visual approach with a more crafted editorial travel identity that avoids repetitive AI-template cues.
+- [x] Introduce a two-font typography system using Inter plus a warm editorial serif for display moments.
+- [x] Curate more Mangaluru-focused imagery and expand content on every route, especially Food, Places, and Experiences.
+- [x] Recompose hero sections so each route has a distinct visual concept, richer media treatment, and clearer calls to action.
+- [x] Add high-quality interaction patterns, including motion-driven carousels, hover reveals, animated content transitions, and scroll choreography.
+- [x] Improve the trip planner and destination exploration modules so they feel more tactile and useful.
+- [x] Validate the updated desktop and mobile experience, then save a new checkpoint for delivery.

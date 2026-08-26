@@ -4,8 +4,6 @@ import { Link, useLocation } from "wouter";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { IMG, navItems } from "@/data/siteData";
 
-const railItems = ["01", "02", "03", "04", "05"];
-
 export default function SiteShell({ children }: PropsWithChildren) {
   const [location] = useLocation();
   const [scrolled, setScrolled] = useState(false);
@@ -27,9 +25,9 @@ export default function SiteShell({ children }: PropsWithChildren) {
     <div className="page-noise">
       <header className={`site-header ${scrolled || location !== "/" ? "scrolled" : ""}`}>
         <div className="header-inner">
-          <Link href="/" className="brand-link" aria-label="Kudla Field Guide home">
+          <Link href="/" className="brand-link" aria-label="Kudla Coastal Almanac home">
             <img src={IMG.mark} className="brand-mark" alt="Kudla route pin" />
-            <span className="brand-name">Kudla / Field Guide</span>
+            <span className="brand-lockup"><strong>Kudla</strong><small>Coastal almanac</small></span>
           </Link>
           <nav className={`header-nav ${menuOpen ? "open" : ""}`} aria-label="Primary navigation">
             {navItems.map((item) => (
@@ -45,14 +43,6 @@ export default function SiteShell({ children }: PropsWithChildren) {
         </div>
       </header>
 
-      <aside className="route-rail" aria-label="Field guide chapter rail">
-        <span className="rail-label">Mangaluru · Karnataka</span>
-        <div className="rail-numbers">
-          {railItems.map((number, index) => <span key={number} className={`rail-number ${index === 0 ? "active" : ""}`}>{number}</span>)}
-        </div>
-        <div className="rail-coordinates"><span>12°52'N</span><span>74°50'E</span></div>
-      </aside>
-
       <main className="page-main">{children}</main>
 
       <footer className="footer">
@@ -60,7 +50,7 @@ export default function SiteShell({ children }: PropsWithChildren) {
           <div>
             <div className="footer-brand">
               <img src={IMG.mark} className="brand-mark" alt="" />
-              <span className="brand-name">Kudla / Field Guide</span>
+              <span className="brand-lockup"><strong>Kudla</strong><small>Coastal almanac</small></span>
             </div>
             <p>A considered guide to Mangaluru for travelers who want the coast beyond the obvious — with room for weather, appetite, and a good detour.</p>
           </div>

@@ -21,6 +21,12 @@ export const IMG = {
   palms: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=85",
   market: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=85",
   road: "https://images.unsplash.com/photo-1524498250077-390f9e378fc0?auto=format&fit=crop&w=1400&q=85",
+  panambur: "https://s7ap1.scene7.com/is/image/incredibleindia/1-panambur-beach-mangalore-karnataka-city-hero?qlt=82&ts=1726722213408",
+  kudroli: "https://s7ap1.scene7.com/is/image/incredibleindia/1-kudroli-temple-mangalore-karnataka-attr-hero?qlt=82&ts=1726722399469",
+  port: "https://s7ap1.scene7.com/is/image/incredibleindia/1-old-mangalore-port-mangalore-karnataka-attr-hero?qlt=82&ts=1726722267474",
+  church: "https://s7ap1.scene7.com/is/image/incredibleindia/1-milagres-church-mangalore-karnataka-attr-hero?qlt=82&ts=1726722196168",
+  kadri: "https://s7ap1.scene7.com/is/image/incredibleindia/kadri-manjunatha-temple-mangalore-karnataka-1-attr-nearby?qlt=82&ts=1742193964976",
+  kateel: "https://s7ap1.scene7.com/is/image/incredibleindia/kateel-durga-parameshwari-temple-mangalore-karnataka-1-attr-nearby?qlt=82&ts=1742169785708",
 };
 
 export const navItems = [
@@ -81,7 +87,7 @@ export const places: Place[] = [
     name: "Kadri Park",
     category: "Nature",
     distance: "15 min from city",
-    image: IMG.palms,
+    image: IMG.kadri,
     description: "A green pause in the middle of town, with old trees and a hilltop temple nearby.",
     tags: ["green", "morning"],
     accent: "sea",
@@ -101,7 +107,7 @@ export const places: Place[] = [
     name: "Kateel",
     category: "Heritage",
     distance: "45 min east",
-    image: IMG.road,
+    image: IMG.kateel,
     description: "A river island shrine reached through red earth, green roads, and a slower kind of reverence.",
     tags: ["day trip", "river"],
     accent: "sand",
