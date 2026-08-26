@@ -24,3 +24,10 @@
 - [x] Recompose the homepage into more visibly progressive, scroll-driven 3D scenes.
 - [x] Add layered parallax, depth transitions, and interactive motion that remain usable on touch and reduced-motion devices.
 - [x] Validate live data, responsive performance, and scroll choreography before saving the update.
+
+## Image-Led Scroll Story Pass
+
+- [x] Replace the abstract 3D tide sculpture with an image-first scroll sequence.
+- [x] Compose layered Mangaluru image scenes with pinning, crop shifts, parallax, and narrative copy transitions.
+- [x] Preserve live weather and accessible reduced-motion behavior while removing the no-longer-needed 3D scene.
+- [x] Verify the visual story on desktop and mobile before saving the update.
