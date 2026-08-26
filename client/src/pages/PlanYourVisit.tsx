@@ -1,0 +1,20 @@
+/* Coastal Modernist planner: a low-friction route builder that turns a few preferences into a useful first day. */
+import { useState } from "react";
+import { ArrowRight, Check, Compass, Sparkles } from "lucide-react";
+import { Link } from "wouter";
+import ScrollReveal from "@/components/ScrollReveal";
+
+export default function PlanYourVisit() {
+  const [pace, setPace] = useState("slow");
+  const [days, setDays] = useState("2");
+  const [submitted, setSubmitted] = useState(false);
+  const plan = pace === "slow" ? ["Neer dosa before 10", "Sasihithlu river mouth", "Seafood under a fan"] : pace === "curious" ? ["Central Market at 8", "St. Aloysius Chapel", "Panambur at golden hour"] : ["Kadri Park morning", "Gokarnanatheshwara Temple", "Old quarter supper"];
+
+  return (
+    <>
+      <section className="page-hero"><div className="page-hero-inner"><ScrollReveal><span className="eyebrow">Plan / Your version of Kudla</span><h1 className="display">Give the day<br /><em>a shape.</em></h1><p className="lede">Tell us how you like to travel. We’ll give you a first route, then leave enough white space for the city to surprise you.</p><div className="page-route-spine"><span>Route / Personal</span><div className="route-line" /><span>Open / 01</span></div></ScrollReveal></div></section>
+      <section className="section-shell"><div className="planner"><ScrollReveal><div className="planner-form"><span className="eyebrow">Three small choices</span><div className="form-field" style={{ marginTop: 28 }}><label htmlFor="days">How long are you here?</label><select id="days" value={days} onChange={(event) => setDays(event.target.value)}><option value="1">One day</option><option value="2">Two days</option><option value="3">Three or more</option></select></div><div className="form-field"><label htmlFor="pace">What kind of day sounds right?</label><select id="pace" value={pace} onChange={(event) => setPace(event.target.value)}><option value="slow">Slow coast + long lunch</option><option value="curious">Markets + old streets</option><option value="green">Green mornings + heritage</option></select></div><button className="button button-primary" style={{ width: "100%", marginTop: 8 }} onClick={() => setSubmitted(true)}>{submitted ? "Route updated" : "Show my route"} <ArrowRight size={14} /></button><p className="planner-note">No sign-up, no inbox. This is a starting point you can reshape whenever the weather changes.</p><div className="planner-fieldnotes"><span><i /> coast</span><span><i /> appetite</span><span><i /> weather</span></div></div></ScrollReveal><ScrollReveal delay={120}><div className="planner-result"><span className="result-kicker"><Compass size={14} style={{ verticalAlign: "-3px", marginRight: 5 }} /> Your {days === "1" ? "day" : `${days}-day`} cue</span><h2>{submitted ? "Follow the good part of the plan." : "Start with one anchor."}</h2><p>{submitted ? "Here’s a loose first day based on your answers. Save the stops that feel right, then let the gaps stay open." : "A good trip does not need a full itinerary. Choose one strong place to begin and let the rest connect itself."}</p><div className="planner-route">{plan.map((stop, index) => <div key={stop}><span>0{index + 1}</span><b>{stop}</b></div>)}</div>{submitted && <div style={{ display: "flex", alignItems: "center", gap: 9, marginTop: 22, color: "var(--sea-deep)", fontSize: 11, fontWeight: 800, letterSpacing: ".08em", textTransform: "uppercase" }}><Check size={15} /> Your route is ready to wander</div>}</div></ScrollReveal></div></section>
+      <section className="section-shell tight"><ScrollReveal><div className="cta-panel calm"><div><span className="eyebrow"><Sparkles size={14} /> Good to know</span><h2>The best plan has a little weather in it.</h2></div><div><p>For more context on getting around, the seasons, and what to carry, keep the travel guide close.</p><div className="button-row"><Link href="/travel-guide" className="button button-light">Read practical notes <ArrowRight size={14} /></Link></div></div></div></ScrollReveal></section>
+    </>
+  );
+}
