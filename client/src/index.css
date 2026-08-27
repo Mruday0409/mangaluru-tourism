@@ -1119,12 +1119,12 @@ h1, h2, h3, .display, .almanac-section-title, .almanac-hero h1 { font-family: "D
 .weather-almanac-error p { margin: 0; color: rgba(255,255,255,.67); font-size: 9px; line-height: 1.5; }
 @keyframes almanac-spin { to { transform: rotate(360deg); } }
 
-.tide-scroll-scene { height: 320vh; position: relative; color: #f7f0e6; background: #102c29; }
+.tide-scroll-scene { height: 270vh; position: relative; color: #f7f0e6; background: #102c29; }
 .tide-scroll-sticky { height: 100vh; position: sticky; top: 0; overflow: hidden; }
 .tide-image-stage { position: absolute; z-index: 1; inset: 0; pointer-events: none; }
-.tide-image { position: absolute; margin: 0; overflow: hidden; background: #163c36; box-shadow: 0 25px 60px rgba(0,0,0,.34); transform-origin: center; }
+.tide-image { position: absolute; margin: 0; overflow: hidden; contain: layout paint style; background: #163c36; box-shadow: 0 25px 60px rgba(0,0,0,.34); will-change: opacity; }
 .tide-image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(7,26,23,.5), transparent 52%); }
-.tide-image img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.tide-image img { width: 100%; height: 100%; display: block; object-fit: cover; backface-visibility: hidden; }
 .tide-image figcaption { position: absolute; z-index: 1; right: 14px; bottom: 13px; color: rgba(255,255,255,.79); font-size: 8px; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; }
 .tide-image-one { width: min(45vw, 660px); height: min(68vh, 670px); top: 15vh; left: 7vw; }
 .tide-image-two { width: min(42vw, 620px); height: min(62vh, 610px); top: 19vh; right: 7vw; }
@@ -1157,7 +1157,7 @@ h1, h2, h3, .display, .almanac-section-title, .almanac-hero h1 { font-family: "D
 
 @media (max-width: 900px) {
   .weather-almanac { right: 24px; bottom: 25px; }
-  .tide-scroll-scene { height: 260vh; }
+  .tide-scroll-scene { height: 235vh; }
   .tide-scroll-copy { max-width: 420px; }
   .tide-image-one { width: 48vw; left: 5vw; }
   .tide-image-two { width: 47vw; right: 5vw; }
@@ -1173,7 +1173,7 @@ h1, h2, h3, .display, .almanac-section-title, .almanac-hero h1 { font-family: "D
 @media (max-width: 560px) {
   .weather-almanac { min-width: 0; right: 20px; left: 20px; bottom: 17px; }
   .weather-almanac-main > strong { font-size: 36px; }
-  .tide-scroll-scene { height: 210vh; }
+  .tide-scroll-scene { height: 200vh; }
   .tide-image { top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; }
   .tide-image::after { background: linear-gradient(0deg, rgba(6,24,21,.82), rgba(6,24,21,.12) 65%); }
   .tide-scroll-vignette { background: linear-gradient(0deg, rgba(6,24,21,.82), rgba(6,24,21,.03) 68%); }

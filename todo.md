@@ -31,3 +31,10 @@
 - [x] Compose layered Mangaluru image scenes with pinning, crop shifts, parallax, and narrative copy transitions.
 - [x] Preserve live weather and accessible reduced-motion behavior while removing the no-longer-needed 3D scene.
 - [x] Verify the visual story on desktop and mobile before saving the update.
+
+## Image Scroll Reliability Repair
+
+- [x] Identify why the scene imagery is not reliably visible in the Coastal Image Study.
+- [x] Replace fragile source behavior with responsive local image delivery and visible loading fallbacks.
+- [x] Reduce scroll-linked animation work and prevent unnecessary visual effects in the image scene.
+- [x] Verify image delivery and smooth scrolling on desktop and mobile before saving the repair.

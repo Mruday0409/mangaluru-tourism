@@ -4,7 +4,6 @@ import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion"
 import { ArrowDownRight, ArrowRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { Link } from "wouter";
 import { IMG } from "@/data/siteData";
-import CoastalAtmosphere from "@/components/CoastalAtmosphere";
 import TideScrollScene from "@/components/TideScrollScene";
 import WeatherAlmanac from "@/components/WeatherAlmanac";
 
@@ -45,7 +44,6 @@ export default function Home() {
       <section ref={heroRef} className="almanac-hero">
         <motion.div className="almanac-hero-media" style={{ scale: imageScale, y: imageY }}><img src={IMG.hero} alt="Arabian Sea coast at Mangaluru in warm evening light" /></motion.div>
         <div className="almanac-hero-wash" />
-        <CoastalAtmosphere />
         <div className="almanac-hero-content">
           <motion.p initial="hidden" animate="visible" variants={rise} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} className="almanac-overline">Mangaluru, in its own time</motion.p>
           <motion.h1 initial="hidden" animate="visible" variants={rise} transition={{ duration: 0.8, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}>Meet the coast<br /><em>between the lines.</em></motion.h1>
