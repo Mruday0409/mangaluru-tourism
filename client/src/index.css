@@ -1119,13 +1119,20 @@ h1, h2, h3, .display, .almanac-section-title, .almanac-hero h1 { font-family: "D
 .weather-almanac-error p { margin: 0; color: rgba(255,255,255,.67); font-size: 9px; line-height: 1.5; }
 @keyframes almanac-spin { to { transform: rotate(360deg); } }
 
-.tide-scroll-scene { height: 270vh; position: relative; color: #f7f0e6; background: #102c29; }
+.tide-scroll-scene { height: 250vh; position: relative; color: #f7f0e6; background: #102c29; }
 .tide-scroll-sticky { height: 100vh; position: sticky; top: 0; overflow: hidden; }
 .tide-image-stage { position: absolute; z-index: 1; inset: 0; pointer-events: none; }
 .tide-image { position: absolute; margin: 0; overflow: hidden; contain: layout paint style; background: #163c36; box-shadow: 0 25px 60px rgba(0,0,0,.34); will-change: opacity; }
-.tide-image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(7,26,23,.5), transparent 52%); }
-.tide-image img { width: 100%; height: 100%; display: block; object-fit: cover; backface-visibility: hidden; }
-.tide-image figcaption { position: absolute; z-index: 1; right: 14px; bottom: 13px; color: rgba(255,255,255,.79); font-size: 8px; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; }
+.tide-image::after { content: ""; position: absolute; z-index: 2; inset: 0; background: linear-gradient(0deg, rgba(7,26,23,.5), transparent 52%); }
+.tide-image img { width: 100%; height: 100%; position: relative; z-index: 1; display: block; object-fit: cover; backface-visibility: hidden; opacity: 0; transition: opacity .38s var(--ease-out); }
+.tide-image.is-ready img { opacity: 1; }
+.tide-image-loader { position: absolute; z-index: 4; top: 50%; left: 50%; display: grid; justify-items: center; gap: 10px; color: rgba(255,255,255,.75); transform: translate(-50%, -50%); transition: opacity .25s var(--ease-out); }
+.tide-image-loader span { width: 24px; height: 24px; border: 1px solid rgba(255,255,255,.28); border-top-color: #e85b3f; border-radius: 50%; animation: almanac-spin .85s linear infinite; }
+.tide-image-loader small { white-space: nowrap; font-size: 7px; letter-spacing: .12em; text-transform: uppercase; font-weight: 800; }
+.tide-image.is-ready .tide-image-loader { opacity: 0; }
+.tide-image-context { position: absolute; z-index: 3; right: 14px; bottom: 13px; display: grid; justify-items: end; max-width: 220px; text-align: right; }
+.tide-image-context span { color: rgba(255,255,255,.84); font-size: 8px; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; }
+.tide-image-context p { margin: 5px 0 0; color: rgba(255,255,255,.68); font-size: 10px; line-height: 1.4; }
 .tide-image-one { width: min(45vw, 660px); height: min(68vh, 670px); top: 15vh; left: 7vw; }
 .tide-image-two { width: min(42vw, 620px); height: min(62vh, 610px); top: 19vh; right: 7vw; }
 .tide-image-three { width: min(48vw, 710px); height: min(72vh, 700px); top: 13vh; left: 26vw; }
@@ -1151,13 +1158,19 @@ h1, h2, h3, .display, .almanac-section-title, .almanac-hero h1 { font-family: "D
 .tide-scroll-index img { width: 26px; height: 26px; object-fit: contain; }
 .tide-scroll-index div { display: grid; gap: 5px; }
 .tide-scroll-index b { color: #e85b3f; font-size: 8px; }
+.tide-scene-selector { position: absolute; z-index: 5; top: 50%; right: 4vw; display: grid; gap: 10px; transform: translateY(-50%); }
+.tide-scene-selector button { display: flex; align-items: center; justify-content: flex-end; gap: 7px; min-width: 44px; height: 22px; padding: 0; color: rgba(255,255,255,.52); border: 0; background: transparent; font-size: 8px; letter-spacing: .1em; font-weight: 800; transition: color .22s var(--ease-out); }
+.tide-scene-selector button i { width: 18px; height: 1px; background: rgba(255,255,255,.35); transition: width .28s var(--ease-out), background .28s var(--ease-out); }
+.tide-scene-selector button.active { color: #fff; }
+.tide-scene-selector button.active i { width: 37px; background: #e85b3f; }
+.tide-scene-selector button:focus-visible { outline: 2px solid #e85b3f; outline-offset: 4px; }
 .tide-scroll-data { position: absolute; z-index: 4; right: 10vw; bottom: 47px; display: flex; gap: 17px; color: rgba(255,255,255,.65); font-size: 8px; letter-spacing: .11em; text-transform: uppercase; font-weight: 800; }
 .tide-scroll-data span { display: inline-flex; align-items: center; gap: 6px; }
 .tide-scroll-data i { width: 6px; height: 6px; border-radius: 50%; background: #e85b3f; box-shadow: 0 0 0 4px rgba(232,91,63,.12); }
 
 @media (max-width: 900px) {
   .weather-almanac { right: 24px; bottom: 25px; }
-  .tide-scroll-scene { height: 235vh; }
+  .tide-scroll-scene { height: 225vh; }
   .tide-scroll-copy { max-width: 420px; }
   .tide-image-one { width: 48vw; left: 5vw; }
   .tide-image-two { width: 47vw; right: 5vw; }
@@ -1168,12 +1181,13 @@ h1, h2, h3, .display, .almanac-section-title, .almanac-hero h1 { font-family: "D
   .tide-scroll-meter { left: 7vw; }
   .tide-scroll-index { left: 7vw; }
   .tide-scroll-data { right: 7vw; }
+  .tide-scene-selector { right: 3vw; }
 }
 
 @media (max-width: 560px) {
   .weather-almanac { min-width: 0; right: 20px; left: 20px; bottom: 17px; }
   .weather-almanac-main > strong { font-size: 36px; }
-  .tide-scroll-scene { height: 200vh; }
+  .tide-scroll-scene { height: 190vh; }
   .tide-image { top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; }
   .tide-image::after { background: linear-gradient(0deg, rgba(6,24,21,.82), rgba(6,24,21,.12) 65%); }
   .tide-scroll-vignette { background: linear-gradient(0deg, rgba(6,24,21,.82), rgba(6,24,21,.03) 68%); }
@@ -1186,6 +1200,12 @@ h1, h2, h3, .display, .almanac-section-title, .almanac-hero h1 { font-family: "D
   .tide-scroll-meter { left: 22px; bottom: 31px; }
   .tide-scroll-index { top: 25px; left: 22px; }
   .tide-scroll-data { display: none; }
+  .tide-scene-selector { top: auto; right: 21px; bottom: 29px; display: flex; gap: 7px; transform: none; }
+  .tide-scene-selector button { width: 28px; min-width: 28px; height: 22px; justify-content: center; }
+  .tide-scene-selector button i { width: 18px; }
+  .tide-scene-selector button.active i { width: 24px; }
+  .tide-scene-selector button span { display: none; }
+  .tide-image-context { right: 18px; bottom: 17px; max-width: 230px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1193,6 +1213,7 @@ h1, h2, h3, .display, .almanac-section-title, .almanac-hero h1 { font-family: "D
   .tide-scroll-sticky { height: auto; min-height: 720px; position: relative; padding: 95px 24px; }
   .tide-image-stage { position: relative; min-height: 520px; }
   .tide-image { position: relative; inset: auto; width: min(100%, 560px); height: 320px; margin: 0 auto 22px; opacity: 1 !important; transform: none !important; }
+  .tide-scene-selector { display: none; }
   .tide-scroll-copy { position: relative; inset: auto; max-width: 560px; margin-bottom: 42px; opacity: 1 !important; transform: none !important; }
   .tide-scroll-copy-two { text-align: left; }
   .tide-scroll-copy-two p { margin-left: 0; }

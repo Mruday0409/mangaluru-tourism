@@ -38,3 +38,11 @@
 - [x] Replace fragile source behavior with responsive local image delivery and visible loading fallbacks.
 - [x] Reduce scroll-linked animation work and prevent unnecessary visual effects in the image scene.
 - [x] Verify image delivery and smooth scrolling on desktop and mobile before saving the repair.
+
+## Image Study Controls and Reusable Skill
+
+- [x] Add a subtle visual loading state and explicit ready state for each scroll-story image.
+- [x] Add accessible manual scene dots that synchronize with the scroll-driven image narrative.
+- [x] Add concise location context that transitions with each scene without obscuring photography.
+- [x] Package the proven image-led travel interaction, asset optimization, and validation workflow as a reusable skill.
+- [x] Validate the website controls, build, and skill package before delivery.
